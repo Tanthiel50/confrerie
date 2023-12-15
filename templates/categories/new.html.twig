@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+    {{ include('categories/_form.html.twig') }}
+
+    <div class="container d-flex p-4">
+
+        <a class="btn-secondary" href="{{ path('app_categories_index') }}">Retour a la liste de catégories</a>
+    </div>
+{% endblock %}

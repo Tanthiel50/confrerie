@@ -1,0 +1,68 @@
+<!-- Navbar -->
+<nav
+	class="navbar navbar-expand-lg navbar-dark bg-body-tertiary">
+	<!-- Container wrapper -->
+	<div
+		class="container-fluid">
+		<!-- Toggle button -->
+		<button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fas fa-bars"></i>
+		</button>
+
+		<!-- Collapsible wrapper -->
+		<div
+			class="collapse navbar-collapse" id="navbarSupportedContent">
+			<!-- Navbar brand -->
+			<a class="navbar-brand mt-2 mt-lg-0" href="#">
+				<img src="{{asset('images/logo.png')}}" height="80" loading="lazy"/>
+			</a>
+			<!-- Left links -->
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Home</a>
+				</li>
+				{% if app.user %}
+					<li class="nav-item">
+						{# <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a> #}
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+					</li>
+				{% endif %}
+			</ul>
+			<!-- Left links -->
+		</div>
+		<!-- Collapsible wrapper -->
+
+		<!-- Right elements -->
+		{% if app.user %}
+			<div
+				class="d-flex align-items-center">
+				<!-- Avatar -->
+				<div class="dropdown">
+					<a data-mdb-dropdown-init class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+						{% set userImage = app.user.img is not empty ? './uploads/user/' ~ app.user.img : '../images/logo.png' %}
+						<img src="{{ asset(userImage) }}" class="rounded-circle" height="25" alt="Portrait" loading="lazy"/>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+						{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITEUR') %}
+							<li class="nav-item">
+								<a class="nav-link" href={{ path('admin_index')}}>Administration</a>
+							</li>
+						{% endif %}
+						{# <li>
+							<a class="dropdown-item" href="#">My profile</a>
+						</li> #}
+						<li>
+							<a class="dropdown-item" href="{{path('app_logout')}}">Logout</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		{% endif %}
+		<!-- Right elements -->
+	</div>
+	<!-- Container wrapper -->
+</nav>
+<!-- Navbar -->

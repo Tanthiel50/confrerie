@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div
+		class="vh-100">
+		<!-- HERO BACKGROUND -->
+		<div lc-helper="background" class="container-fluid py-5 mb-4 d-flex justify-content-center h-50" style="  background-image: url('{{asset('images/header.png')}}');
+								        background-position: center;
+								        background-size:cover;
+								        background-repeat:no-repeat">
+			<div
+				class="p-5 mb-4 lc-block col-xxl-7 col-lg-8 col-12" style=" backdrop-filter: blur(6px) saturate(102%);
+										        -webkit-backdrop-filter: blur(6px) saturate(102%);
+										        background-color: rgba(255, 255, 255, 0.45);
+										        border-radius: 12px;
+										        border: 1px solid rgba(209, 213, 219, 0.3);">
+				<!-- HERO TEXT -->
+				<div class="lc-block">
+					<div editable="rich">
+						<h1 class="fw-bolder display-3">La Confrérie du cassoulet</h2>
+					</div>
+				</div>
+				<div class="lc-block col-md-8">
+					<div editable="rich">
+						<p class="lead">lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						</p>
+					</div>
+				</div>
+				{# <!-- HERO BUTTON -->
+				<div class="lc-block">
+					<a class="btn btn-dark" href="#game" role="button">Découvrir</a>
+				</div> #}
+			</div>
+		</div>
+		{# CARD #}
+    <div class="container mx-auto mt-4">
+        <h2 class="text-center">Les articles</h2>
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-md-4"> <!-- Chaque carte prend 4 colonnes et a une marge en bas -->
+                    <div class="card" style="width: 18rem;">
+						<img src={{ asset('./uploads/articles/'~ article.img) }} class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">{{ article.title }}</h5>
+							<h6 class="card-subtitle mb-2 text-muted">Par {{ article.user.firstName }}</h6>
+							<p class="card-text">{{ article.content|slice(0, 100) }}{% if article.content|length > 100 %}...{% endif %}</p>
+							<a href="{{ path('app_articles_reading', {'slug': article.slug}) }}" class="btn mr-2">
+								Lire l'article</a>
+							<a href="{{ path('app_articles_author', {'id': article.id}) }}" class="btn ">
+								Voir l'auteur</a>
+						</div>
+					</div>
+                </div>
+                {% if loop.index is divisible by(3) %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+	{% endblock %}

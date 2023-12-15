@@ -1,0 +1,28 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur de l'article: {{ article.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1>Auteur de l'article: {{ article.title }}</h1>
+                <img src="{{ asset('uploads/user/' ~ author.img) }}" alt="{{ article.title }}" class="img-fluid" />
+                <p>Nom de l'auteur: {{ author.firstName }} {{ author.lastName }}</p>
+                <p>Email de l'auteur: {{ author.email }}</p>
+
+                <h2>Articles de {{ author.firstName }}:</h2>
+                {% for authorArticle in authorArticles %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h3>{{ authorArticle.title }}</h3>
+                            <p>{{ authorArticle.content|slice(0, 100) }}{% if authorArticle.content|length > 100 %}...{% endif %}</p>
+                            <!-- Autres détails de l'article -->
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

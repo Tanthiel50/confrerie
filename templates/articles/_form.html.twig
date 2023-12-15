@@ -1,0 +1,67 @@
+{% block title %} {% endblock %}
+{% block body %}
+    <div class="container">
+        <h1 class="my-custom-class">Nouvel article</h1>
+    </div>
+
+{{ form_start(form, {'attr': {'class': 'form'}}) }}
+<div class="container">
+    {# Champ 'title' #}
+    <div class="form-group">
+        {{ form_label(form.title, 'Titre') }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.title) }}
+    </div>
+
+    {# Champ 'content' #}
+    <div class="form-group">
+        {{ form_label(form.content, 'Contenu') }}
+        {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.content) }}
+    </div>
+
+    {# Champ 'date' #}
+    <div class="form-group">
+        {{ form_label(form.date, 'Date') }}
+        {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.date) }}
+    </div>
+
+    {# Champ 'category' #}
+    <div class="form-group">
+        {{ form_label(form.category, 'Catégorie') }}
+        {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.category) }}
+    </div>
+
+    {# Champ 'img' (Fichier) #}
+    <div class="form-group">
+        {% if article.img %}
+            <img src="{{ asset('./uploads/articles/'~ article.img) }}" alt="Image actuelle" style="max-width: 30%; height: auto;" />
+        {% endif %}
+        {{ form_label(form.img, 'Image') }}
+        {{ form_widget(form.img, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.img) }}
+    </div>
+
+    {# Champ 'slug' #}
+    <div class="form-group">
+        {{ form_label(form.slug, 'Lien') }}
+        {{ form_widget(form.slug, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.slug) }}
+    </div>
+
+    {# Champ 'user' #}
+    <div class="form-group">
+        {{ form_label(form.user, 'Auteur') }}
+        {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.user) }}
+    </div>
+
+    {# Bouton de soumission #}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+</div>
+
+{{ form_end(form) }}
+
+{% endblock %}

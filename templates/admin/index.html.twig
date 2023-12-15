@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+<article class="card mb-3">
+        <div class="card-header">
+            Catégories
+        </div>
+        <div class="card-body">
+            <p><a href={{path('app_categories_index')}}>Liste des catégories</a></p>
+            <p><a href={{path('app_categories_new')}}>Ajouter une catégorie</a></p>
+        </div>
+    </article>
+    <article class="card mb-3">
+        <div class="card-header">
+            Articles
+        </div>
+        <div class="card-body">
+            <p><a href={{path('app_articles_index')}}>Liste des articles</a></p>
+            <p><a href={{path('app_articles_new')}}>Ajouter un article</a></p>
+        </div>
+    </article>
+        {% if is_granted('ROLE_ADMIN') %}
+    <article class="card mb-3">
+        <div class="card-header">
+            Utilisateurs
+        </div>
+        <div class="card-body">
+            <p><a href={{path('app_user_index')}}>Liste des utilisateurs</a></p>
+            <p><a href={{path('app_user_new')}}>Ajouter un nouvel utilisateur</a></p>
+        </div>
+    </article>
+        {% endif %}
+</div>
+
+    {% endblock %}

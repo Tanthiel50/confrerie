@@ -1,0 +1,22 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur de l'article: {{ article.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <img src={{ asset('./uploads/articles/'~ article.img) }} class="card-img-top" alt="...">
+                        <h1 class="card-title">{{ article.title }}</h1>
+                        <p class="card-text">{{ article.content }}</p>
+                        <p class="card-text">Auteur de publication: {{ author.firstName }}</p>
+                        <p class="card-text">Catégorie de l'article: {{ articleCategory.name }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
